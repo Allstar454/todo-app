@@ -1,6 +1,11 @@
 import functions as fun
 import PySimpleGUI as sg
 import time
+import os
+
+if not os.path.exists("todos.txt"):
+    with open("todos.txt", "w") as file:
+        pass
 
 label_time = sg.Text(time.strftime("%b %d, %Y %H:%M:%S"), key="time_label")
 
@@ -19,7 +24,7 @@ listbox_edit = sg.Listbox(values=fun.get_todos(), key="edit_key",
                           enable_events=True, size=(45, 10))
 button_edit = sg.Button("Edit")
 button_complete = sg.Button('Complete\nor\nRemove', size=(12, 3), key="Complete")
-button_exit = sg.Button("Exit")
+button_exit = sg.Button(image_size=(50,55), image_source="exit.png", key="Exit")
 
 window = sg.Window("My To-Do App",
                    layout=[[label_time], [label_mylist],
